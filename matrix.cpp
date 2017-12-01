@@ -22,10 +22,11 @@ int main()
 		cout << A2 << endl;
 		
 		A2[2][2] = 1.4;					//Modify S
-		cout << "A2[2][2]=" << A2[2][2] << endl;		//Verify S		
-		
-		CMatrix A3 = A1 * A2;
+		cout <<  A2[2][2] << endl;		//Verify S		
+		cout << A2 << endl;
 
+		CMatrix A3 = A1 * A2;
+	
 		CMatrix S = A1 * A2;			//Multiply A1 by A2
 		cout << S << endl;
 	
