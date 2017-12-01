@@ -17,7 +17,7 @@ class CMatrix{
 public:
 	class IndexOutOfRange{};
 	class WrongDim{};
-
+	class Cref2{};
 	CMatrix(int, int, double, double);
 	CMatrix(fstream&);
 	~CMatrix();
