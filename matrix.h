@@ -17,7 +17,7 @@ class CMatrix{
 public:
 	class IndexOutOfRange{};
 	class WrongDim{};
-	class Cref2{};
+	class Cref2;
 	CMatrix(int, int, double, double);
 	CMatrix(fstream&);
 	~CMatrix();
@@ -62,7 +62,9 @@ public:
 		return Cref(*this, ii);
 	};
 };
+class CMatrix::Cref2{
 
+};
 
 
 double** CMatrix::matrix_alloc(int ii, int jj){
