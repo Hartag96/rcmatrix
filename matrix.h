@@ -63,7 +63,7 @@ public:
 	};
 };
 class CMatrix::Cref2{
-
+	friend class CMatrix;
 };
 
 
