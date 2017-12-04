@@ -18,8 +18,7 @@ class CMatrix{
 public:
 	class IndexOutOfRange{};
 	class WrongDim{};
-	class Cref1;
-	class Cref2;
+
 	CMatrix(int, int, double, double);
 	CMatrix(fstream&);
 	~CMatrix();
@@ -45,7 +44,7 @@ public:
     return s;
   }
 
-	class Cref2											// Cref2
+		class Cref2											// Cref2
 	{
 		friend class CMatrix;
   	CMatrix& s;
@@ -76,14 +75,14 @@ public:
  
  	 	Cref2 operator [] (int jj) 
  	 	{
-			if(jj > s.j) throw IndexOutOfRange();
+			if(jj > s.j) throw CMatrix::IndexOutOfRange();
   		return Cref2(s, i, jj);
   	}
 	
 	};
 	Cref1 operator[](int ii)
 	{
-		if(ii > i) throw IndexOutOfRange();
+		if(ii > i) throw CMatrix::IndexOutOfRange();
 		return Cref1(*this, ii);
 	}
 
