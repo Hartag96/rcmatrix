@@ -24,23 +24,20 @@ int main()
 		A2[2][2] = 1.4;					//Modify S
 		cout <<  A2[2][2] << endl;		//Verify S		
 		cout << A2 << endl;
-
-		CMatrix A3 = A1 * A2;
 	
-		CMatrix S = A1 * A2;			//Multiply A1 by A2
-		cout << S << endl;
-	
+		//CMatrix S = A1 * A2;			//Multiply A1 by A2
+		//cout << S << endl;
+		
 		fstream f1;
 		f1.open("matrix.dat", fstream::in);
 		CMatrix B(f1);				//Read the matrix data from file matrix.dat
 		f1.close();				//First two values in this file specify the matrix dimensions
 		cout << B << endl;
 		
-		S = B;						//Assign B to S
-		S[0][0] = 1.4;					//Modify S
-		cout << "S[0][0]=" << S[0][0] << endl;		//Verify S
+		A1 = B;						//Assign B to S
+		A1[0][0] = 1.4;					//Modify S
+		cout << "A1[0][0]=" << A1[0][0] << endl;		//Verify S
 		cout << "B[0][0]=" << B[0][0] << endl;		//Verify B
-
 	}
 	catch(CMatrix::IndexOutOfRange&)
 	{
