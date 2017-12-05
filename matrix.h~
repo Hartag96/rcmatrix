@@ -14,6 +14,7 @@ class CMatrix{
 public:
 	class IndexOutOfRange{};
 	class WrongDim{};
+	class bad_allocc;
 	class Cref1;
 	class Cref2;
 	CMatrix(int, int, double, double);
@@ -106,27 +107,31 @@ struct CMatrix::rcmatrix{
 		return t;
 	}
 
-	private:
 	double** matrix_alloc(int ii, int jj){
-
+		int k=0;
 		try
 		{
-// tfuj stary
 			double **matrix;
     	matrix = new double*[ii];
 			
-			for(int k=0; k<ii; k++)
+			for(k = 0; k<ii; k++)
       	matrix[k] = new double[jj];
-
 			return matrix;
+			
 		}catch (bad_alloc&)
 		{
+			for(int i = k; i >= 0; i--)
+				delete [] matrix[k];
+
+			delete [] matrix;
+
 			throw bad_alloc();
 		}
-
-	};	
+		
+	}
+	
+	
 };
-
 
 class CMatrix::Cref2											// Cref2
 	{
@@ -168,6 +173,7 @@ CMatrix::Cref1 CMatrix::operator[](int i)
 		if(i > data->rows) throw IndexOutOfRange();
 		return Cref1(*this, i);
 	}
+
 
 CMatrix::CMatrix(int i, int j, double a = 0.0, double b = 0.0)
 {
