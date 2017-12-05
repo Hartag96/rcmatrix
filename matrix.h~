@@ -187,6 +187,9 @@ CMatrix::CMatrix(fstream & s)
 CMatrix::CMatrix(const CMatrix& temp)
 {
 	temp.data->n++;
+	if(--data->n == 0 )
+		delete data;
+
 	data = temp.data;
 }
 

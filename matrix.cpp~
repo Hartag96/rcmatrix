@@ -26,7 +26,6 @@ int main()
 		cout << A2 << endl;
 	
 		CMatrix S = A1 * A2;			//Multiply A1 by A2
-		cout << "Mnozenie" << endl;		
 		cout << S << endl;
 		
 		fstream f1;
