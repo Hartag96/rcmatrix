@@ -127,10 +127,7 @@ struct CMatrix::rcmatrix{
 
 			throw bad_alloc();
 		}
-		
 	}
-	
-	
 };
 
 class CMatrix::Cref2											// Cref2

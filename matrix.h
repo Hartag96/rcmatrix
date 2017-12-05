@@ -109,18 +109,16 @@ struct CMatrix::rcmatrix{
 
 	double** matrix_alloc(int ii, int jj){
 		int k=0;
+		double **matrix = new double*[ii];
 		try
 		{
-			double **matrix;
-    	matrix = new double*[ii];
-			
 			for(k = 0; k<ii; k++)
       	matrix[k] = new double[jj];
 			return matrix;
 			
 		}catch (bad_alloc&)
 		{
-			for(int i = k; i >= 0; i--)
+			for(int i = k-1; i >= 0; i--)
 				delete [] matrix[k];
 
 			delete [] matrix;
