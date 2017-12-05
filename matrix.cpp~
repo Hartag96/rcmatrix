@@ -26,6 +26,7 @@ int main()
 		cout << A2 << endl;
 	
 		CMatrix S = A1 * A2;			//Multiply A1 by A2
+		cout << "Mnozenie" << endl;		
 		cout << S << endl;
 		
 		fstream f1;
@@ -38,6 +39,8 @@ int main()
 		A1[0][0] = 1.4;					//Modify S
 		cout << "A1[0][0]=" << A1[0][0] << endl;		//Verify S
 		cout << "B[0][0]=" << B[0][0] << endl;		//Verify B
+		
+		B = B * A1;
 	}
 	catch(CMatrix::IndexOutOfRange&)
 	{

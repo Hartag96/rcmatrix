@@ -11,8 +11,6 @@ using namespace std;
 class CMatrix{
 	struct rcmatrix;
 	rcmatrix* data;
-	double **matrix_alloc(int, int);
-	void matrix_free(double **, int, int);
 public:
 	class IndexOutOfRange{};
 	class WrongDim{};
@@ -22,8 +20,7 @@ public:
 	CMatrix(fstream&);
 	CMatrix(const CMatrix&);
 	~CMatrix();
-	CMatrix& operator= (CMatrix &temp);
-	CMatrix& operator*= (const CMatrix &temp);
+	CMatrix& operator= (const CMatrix &temp);
 	friend CMatrix operator* (const CMatrix&, const CMatrix&);
 	Cref1 operator[] (int);
 	double read(int i, int j) const;
@@ -77,7 +74,7 @@ struct CMatrix::rcmatrix{
 		}
 	}
 
-	rcmatrix(rcmatrix& temp): rows(temp.rows), cols(temp.cols)
+	rcmatrix(const rcmatrix& temp): rows(temp.rows), cols(temp.cols)
 	{
 		int k = 0;
 		int l = 0;
@@ -132,7 +129,7 @@ struct CMatrix::rcmatrix{
 
 class CMatrix::Cref2											// Cref2
 	{
-		friend class CMatrix;
+	
   	CMatrix& s;
   	int i;
 		int j;
@@ -148,8 +145,6 @@ class CMatrix::Cref2											// Cref2
 		return s.read(i,j);
 	}
 };
-
-
 
 	class CMatrix::Cref1											// Cref1
 	{
@@ -173,8 +168,6 @@ CMatrix::Cref1 CMatrix::operator[](int i)
 		return Cref1(*this, i);
 	}
 
-
-
 CMatrix::CMatrix(int i, int j, double a = 0.0, double b = 0.0)
 {
 	data = new rcmatrix(i,j,a,b);
@@ -197,18 +190,13 @@ CMatrix::~CMatrix()
 }
 
 
-CMatrix& CMatrix::operator= (CMatrix &temp)
+CMatrix& CMatrix::operator= (const CMatrix &temp)
 {
 	temp.data->n++;
 	if(--data->n == 0 )
 		delete data;
 
 	data = temp.data;
-	return *this;
-}
-
-CMatrix& CMatrix::operator*= (const CMatrix &temp){
-
 	return *this;
 }
 
@@ -219,7 +207,6 @@ operator * (const CMatrix& s1, const CMatrix& s2)
 	else{
 
 		CMatrix temp(s1.data->rows, s2.data->cols);
-			//cout << s1.data->rows << s2.data->cols << endl;
 		for(int k = 0; k < s1.data->rows; k++){
 			for(int l = 0; l < s2.data->cols; l++){
 					for(int m = 0; m < s1.data->cols; m++){
@@ -227,7 +214,6 @@ operator * (const CMatrix& s1, const CMatrix& s2)
 					} 
 				}
 		}
-
 		return temp;
 	}
 }

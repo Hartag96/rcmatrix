@@ -39,6 +39,7 @@ int main()
 		A1[0][0] = 1.4;					//Modify S
 		cout << "A1[0][0]=" << A1[0][0] << endl;		//Verify S
 		cout << "B[0][0]=" << B[0][0] << endl;		//Verify B
+
 	}
 	catch(CMatrix::IndexOutOfRange&)
 	{
