@@ -105,31 +105,30 @@ struct CMatrix::rcmatrix{
 		n--;
 		return t;
 	}
+
 	private:
 	double** matrix_alloc(int ii, int jj){
-	  int k = 0;
-    double **matrix;
-    matrix = new double*[ii];
 
-    if(matrix == NULL){
-        throw bad_alloc();
-    }else{
-        for(k=0; k<ii; k++){
-            matrix[k] = new double[jj];
-            
-					if(matrix[k] == NULL){
-    				throw bad_alloc();
-        	}
-				}
-    }    
-    return matrix;
-}
+		try
+		{
+			double **matrix;
+    	matrix = new double*[ii];
+
+			for(int k=0; k<ii; k++){
+      	matrix[k] = new double[jj];
+
+			return matrix;
+		}catch(...)
+		{
+			throw bad_alloc();
+		}
+	};	
 };
 
 
 class CMatrix::Cref2											// Cref2
 	{
-		friend class CMatrix;
+	
   	CMatrix& s;
   	int i;
 		int j;
