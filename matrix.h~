@@ -111,17 +111,19 @@ struct CMatrix::rcmatrix{
 
 		try
 		{
+// tfuj stary
 			double **matrix;
     	matrix = new double*[ii];
-
-			for(int k=0; k<ii; k++){
+			
+			for(int k=0; k<ii; k++)
       	matrix[k] = new double[jj];
 
 			return matrix;
-		}catch(...)
+		}catch (bad_alloc&)
 		{
 			throw bad_alloc();
 		}
+
 	};	
 };
 
