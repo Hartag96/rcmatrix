@@ -137,9 +137,10 @@ class CMatrix::Cref2											// Cref2
 	public:
   	Cref2 (CMatrix& ss, int ii, int jj): s(ss), i(ii), j(jj) {};
 
- 	 void operator= (double x) 
+ 	Cref2& operator= (double x) 
   	{
-    	s.write(i,j,x);
+    		s.write(i,j,x);
+		return *this;
    	};
 	operator double()
 	{
