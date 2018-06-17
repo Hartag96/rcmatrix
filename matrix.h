@@ -4,8 +4,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <malloc.h>
 #include <iostream>
+
+// do not try to include malloc.h in macOS
+#ifndef __APPLE__
+#include <malloc.h>
+#endif
+
 using namespace std;
 
 class CMatrix{
